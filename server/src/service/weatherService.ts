@@ -48,12 +48,18 @@ class WeatherService {
 
   // TODO: Create buildGeocodeQuery method
   private buildGeocodeQuery(): string {
-    return encodeURI(`${this.baseURL}geo/1.0/direct?q=${this.cityName}&appid=${this.apiKey}`);
+    const url = `${this.baseURL}geo/1.0/direct?q=${this.cityName}&appid=${this.apiKey}`;
+    console.log('Geocode query URL:', url);
+    return encodeURI(url);
   }
+  
   // TODO: Create buildWeatherQuery method
   private buildWeatherQuery(coordinates: Coordinates): string {
-    return `${this.baseURL}onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,hourly&appid=${this.apiKey}`;
-  }
+    const url = `${this.baseURL}data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,hourly&units=metric&appid=${this.apiKey}`;
+    console.log('Weather query URL:', url);
+    return url;
+  } 
+  
 
   // TODO: Create fetchAndDestructureLocationData method
   private async fetchAndDestructureLocationData(): Promise<Coordinates> {
@@ -75,11 +81,18 @@ class WeatherService {
 
   // TODO: Create fetchWeatherData method
   private async fetchWeatherData(coordinates: Coordinates) {
-    const response = await fetch(this.buildWeatherQuery(coordinates));
-    if (!response.ok) 
-      throw new Error('Error fetching weather data');
+    const url = this.buildWeatherQuery(coordinates);
+    console.log('Fetching weather data from:', url);
+  
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error('Error response from weather API:', response.statusText);
+      throw new Error(`Failed to fetch weather data: ${response.status} ${response.statusText}`);
+    }
+  
     return await response.json();
   }
+  
 
   // TODO: Build parseCurrentWeather method
   private parseCurrentWeather(response: any): Weather {
