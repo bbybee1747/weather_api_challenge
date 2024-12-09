@@ -37,7 +37,6 @@ class WeatherService {
     this.baseURL = 'https://api.openweathermap.org/';
     this.apiKey = process.env.API_KEY || '';
     this.cityName = cityName;
-
   }
 
   // TODO: Create destructureLocationData method
