@@ -98,7 +98,8 @@ class WeatherService {
   private parseCurrentWeather(response: any): Weather {
     console.log(response);
     const { main, weather,  wind} = response;
-    const { temp, humidity, uvi } = main;
+    const { uvi } = response.current
+    const { temp, humidity } = main;
     const { speed } = wind;
 
     return new Weather(this.cityName, temp, humidity, speed, uvi, weather[0].icon);
