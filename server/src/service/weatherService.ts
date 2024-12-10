@@ -55,7 +55,7 @@ class WeatherService {
   
   // TODO: Create buildWeatherQuery method
   private buildWeatherQuery(coordinates: Coordinates): string {
-    const url = `${this.baseURL}data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,hourly&units=metric&appid=${this.apiKey}`;
+    const url = `${this.baseURL}data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,hourly&units=metric&appid=${this.apiKey}`;
     console.log('Weather query URL:', url);
     return url;
   } 
@@ -96,8 +96,13 @@ class WeatherService {
 
   // TODO: Build parseCurrentWeather method
   private parseCurrentWeather(response: any): Weather {
-    const { temp, humidity, wind_speed, uvi, weather } = response.current;
-    return new Weather(this.cityName, temp, humidity, wind_speed, uvi, weather[0].icon);
+    console.log(response);
+    const { main, weather,  wind} = response;
+    const { temp, humidity, uvi } = main;
+    const { speed } = wind;
+
+    return new Weather(this.cityName, temp, humidity, speed, uvi, weather[0].icon);
+
   }
 
   // TODO: Complete buildForecastArray method
