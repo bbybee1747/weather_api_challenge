@@ -17,7 +17,14 @@ class Weather {
   windSpeed: number;
   humidity: number;
   
-  constructor(city: string, date: string, icon: string, iconDescription: string, tempF: number, windSpeed: number, humidity: number) {
+  constructor(city: string, 
+    date: string, 
+    icon: string, 
+    iconDescription: string, 
+    tempF: number, 
+    windSpeed: number, 
+    humidity: number) 
+    {
     this.city = city,
     this.date = date,
     this.icon = icon,
@@ -43,6 +50,7 @@ class WeatherService {
     this.apiKey = `${process.env.API_KEY}`
     this.cityName = cityName
   }
+  
   // TODO: Create fetchLocationData method
 
   private async fetchLocationData(query: string) {
