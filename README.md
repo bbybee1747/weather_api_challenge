@@ -39,7 +39,7 @@ by Brandon Bybee
 
   ## Contributors
 
-  N/A
+  This project required a lot of collaboration with Tara Means and Rafael Guerra to get it completely done.
 
   ## Testing
 
