@@ -19,6 +19,8 @@ by Brandon Bybee
 
   Weather dashboard application that using the Open Weather API to pull weather data to you that displays a 5-day forecast in a user friendly and stylized setting.
 
+  ![alt text](image.png)
+
   ## Requirements
 
   In order to use this application you need to have a basic understanding of web development so that you can either run it through your terminal or have the ability to publish the page to the web and use it that way.
